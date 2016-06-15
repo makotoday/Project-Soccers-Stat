@@ -20,4 +20,9 @@ public class MetreCarre {
 			nbPassage[i] =0;
 		}
 	}
+	
+	public void ajoutPassage(int indiceJoueur)
+	{
+		nbPassage[indiceJoueur]++;
+	}
 }

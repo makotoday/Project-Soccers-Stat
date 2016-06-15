@@ -17,6 +17,15 @@ public class Joueur {
 		this.statistique = stat;
 	}
 	
+	public Joueur(Joueur j)
+	{
+		this.tag_id = j.getTag();
+		this.posJoueur = j.getPosition();
+		this.speed = j.getspeed();
+		this.direction = j.getDirection();
+		j.statistique = this.getStatistique();
+	}
+	
 	public static void main(String[] args){
 		
 	}
@@ -45,4 +54,9 @@ public class Joueur {
 	public Position getPosition(){
 		return this.posJoueur; 
 	}
+
+	public StatistiqueInfo getStatistique() {
+		return statistique;
+	}
+
 }

@@ -14,17 +14,17 @@ public class Read_file{
 	private ArrayList<EnregistrementImage> lesEnregistrements;
 	private ArrayList<Date> lesDates;
 	private int nbDates; //ou nombre d'enregistrements
-	private MetreCarre[][] stade;
+	private MetreCarre[][] staderf;
 	
-	public Read_file(ArrayList<EnregistrementImage> enregistrements)
+	public Read_file(ArrayList<EnregistrementImage> enregistrements, MetreCarre[][] stade)
 	{
 		lesEnregistrements = enregistrements;
-		stade = new MetreCarre[105][68];
+		staderf = stade;
 		for(int x=0;x<105;x++)
 		{
 			for(int y=0;y<68;y++)
 			{
-				stade[x][y] = new MetreCarre(x,y,x+1,y+1);
+				staderf[x][y] = new MetreCarre(x,y,x+1,y+1);
 			}
 		}
 	}
@@ -52,7 +52,6 @@ public class Read_file{
 				array = line.split(",");
 				Date  timeLine =lireDate(array[0]);
 				lesDates.add(timeLine);
-				nbDates++;
 				EnregistrementImage unEnreg = new EnregistrementImage(timeLine);
 					do
 					{
@@ -73,17 +72,57 @@ public class Read_file{
 					array = line.split(",");
 					timeLine = lireDate(array[0]);
 
-				}while(timeLine.equals(lesDates.get(nbDates-1)));
-
+				}while(timeLine.equals(lesDates.get(nbDates)));
 				lesEnregistrements.add(unEnreg);
-
+				//passage dans les metres carres
+				int taille = lesEnregistrements.get(nbDates).getnbJoueurs();
+				
+				if(nbDates>0)
+				{	
+					for(int i =1 ;i<taille;i++)
+					{	
+						
+						Joueur janc= lesEnregistrements.get(nbDates-1).getJoueur(i);
+						Joueur jnouv = lesEnregistrements.get(nbDates).getJoueur(i);
+						if(janc!=null&&jnouv!=null)
+						{
+							Position panc = janc.getPosition();
+							Position pnouv = jnouv.getPosition();
+							if(!panc.equals(pnouv))
+							{
+								//le joueur entre dans un nouveau metrecarre
+								float xpos = pnouv.getX_pos();
+								float ypos = pnouv.getY_pos();
+								if(xpos<105&&ypos<68&&ypos>0&&xpos>0){//les carres en dehors du stade ne sont pas comptés
+									staderf[(int)xpos][(int)ypos].ajoutPassage(i);
+								}
+							}
+						}
+					}
+				}else{
+					//le metre carre du début du jeu
+					for(int i =1 ;i<taille;i++)
+					{	
+						Joueur jnouv = lesEnregistrements.get(nbDates).getJoueur(i);
+						if(jnouv!=null)
+						{
+							Position pnouv = lesEnregistrements.get(nbDates).getJoueur(i).getPosition();
+							float xpos = pnouv.getX_pos();
+							float ypos = pnouv.getY_pos();
+							if(xpos<105&&ypos<68){
+								staderf[(int)xpos][(int)ypos].ajoutPassage(i);
+							}
+							
+						}
+					}
+				}
+				nbDates++;
 			}while(line!=null);
 			bufRead.close();
 			file.close();
 			}catch(IOException e){
 				e.printStackTrace();
 			}
-		nbDates--;
 		System.out.println("enregistrement fini");
 	}
 	
@@ -119,7 +158,8 @@ public class Read_file{
 	
 	public static void main(String[] args){
 		ArrayList<EnregistrementImage> enregistrements = new ArrayList<EnregistrementImage>();
-		Read_file rfile = new Read_file(enregistrements);
+		MetreCarre[][] stade = new MetreCarre[105][68];
+		Read_file rfile = new Read_file(enregistrements,stade);
 		rfile.chargement();
 	}
 

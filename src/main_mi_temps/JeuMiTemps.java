@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class JeuMiTemps {
 	private ArrayList<EnregistrementImage> enregistrements;
 	private Read_file rfile;
+	private MetreCarre[][] stade;
 	
 	public JeuMiTemps()
 	{
-		ArrayList<EnregistrementImage> enregistrements = new ArrayList<EnregistrementImage>();
-		rfile = new Read_file(enregistrements);
+		enregistrements = new ArrayList<EnregistrementImage>();
+		stade = new MetreCarre[105][68];
+		rfile = new Read_file(enregistrements,stade);
 		rfile.chargement();
-		System.out.println(enregistrements.get(10000));
+		System.out.println(enregistrements.get(10000).getJoueur(5).getPosition().getX_pos());
 	}
 	
 	//recuperer nombre d'enregistrements

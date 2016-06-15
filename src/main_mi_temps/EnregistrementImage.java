@@ -37,7 +37,7 @@ public class EnregistrementImage {
 	public Joueur  getJoueur(int id_joeur){
 		
 		for(Joueur f: this.lesJoueurs){
-			if(f.getTag()==id_joeur){
+			if(f!=null&&f.getTag()==id_joeur){
 				return f; 
 			}
 		}
@@ -48,4 +48,9 @@ public class EnregistrementImage {
 	public Date getDate(){
 		return dateEnregistrement;
 	}
+
+	public int getnbJoueurs() {
+		return indiceJoueur;
+	}
+
 }
