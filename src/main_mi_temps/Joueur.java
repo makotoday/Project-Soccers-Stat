@@ -2,13 +2,13 @@ package main_mi_temps;
 
 public class Joueur {
 	
-	private int tag_id; //numero du capteur associé au joueur
+	private int tag_id; //numero du capteur associï¿½ au joueur
 	private float speed;//vitesse du joueur
-	private float direction;//direction de déplacement
+	private float direction;//direction de dï¿½placement
 	private Position posJoueur;
 	private StatistiqueInfo statistique;
 	
-	Joueur(int tag, float speed, float direct, Position position, StatistiqueInfo stat)
+	public Joueur(int tag, float speed, float direct, Position position, StatistiqueInfo stat)
 	{
 		this.tag_id = tag;
 		this.speed = speed;
@@ -32,6 +32,17 @@ public class Joueur {
 		infoJoueur = infoJoueur.concat(statistique.toString()+"\n");
 		return infoJoueur;
 	}
-	
-	
+	//retourne l'identifiant capteur du joueur
+	public int getTag(){
+		return new Integer(this.tag_id); 
+	}
+	public float getspeed(){
+		return new Float(this.speed); 
+	}
+	public float getDirection(){
+		return new Float(this.direction); 
+	}
+	public Position getPosition(){
+		return this.posJoueur; 
+	}
 }
