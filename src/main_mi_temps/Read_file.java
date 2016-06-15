@@ -19,6 +19,7 @@ public class Read_file{
 	public Read_file(ArrayList<EnregistrementImage> enregistrements)
 	{
 		lesEnregistrements = enregistrements;
+		stade = new MetreCarre[105][68];
 		for(int x=0;x<105;x++)
 		{
 			for(int y=0;y<68;y++)
@@ -32,7 +33,7 @@ public class Read_file{
 	public void chargement()
 	{
 		try{
-			FileReader file = new FileReader("infoJeu.csv");
+			FileReader file = new FileReader("infoJeu2.csv");
 			BufferedReader bufRead = new BufferedReader(file);
 		
 			lesDates = new ArrayList<Date>();
@@ -75,8 +76,7 @@ public class Read_file{
 				}while(timeLine.equals(lesDates.get(nbDates-1)));
 
 				lesEnregistrements.add(unEnreg);
-				
-				//System.out.println(lesEnregistrements.get(0));
+
 			}while(line!=null);
 			bufRead.close();
 			file.close();
@@ -84,6 +84,7 @@ public class Read_file{
 				e.printStackTrace();
 			}
 		nbDates--;
+		System.out.println("enregistrement fini");
 	}
 	
 	public Date lireDate(String timeString)

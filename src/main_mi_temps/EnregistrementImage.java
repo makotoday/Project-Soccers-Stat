@@ -29,7 +29,7 @@ public class EnregistrementImage {
 		infoEnreg = infoEnreg.concat("date : "+dateEnregistrement.toString()+"\n");
 		for(int i=0;i< indiceJoueur;i++)
 		{
-			infoEnreg = infoEnreg.concat("joueur "+(indiceJoueur+1)+lesJoueurs[i].toString());
+			infoEnreg = infoEnreg.concat("joueur "+(i+1)+lesJoueurs[i].toString());
 		}
 		return infoEnreg;
 	}

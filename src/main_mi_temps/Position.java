@@ -19,4 +19,16 @@ public class Position {
 		
 		return position;
 	}
+	public float getX_pos() {
+		return x_pos;
+	}
+
+	public float getY_pos() {
+		return y_pos;
+	}
+
+	public float getHeading() {
+		return heading;
+	}
+
 }

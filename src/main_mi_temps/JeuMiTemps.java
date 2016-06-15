@@ -11,7 +11,7 @@ public class JeuMiTemps {
 		ArrayList<EnregistrementImage> enregistrements = new ArrayList<EnregistrementImage>();
 		rfile = new Read_file(enregistrements);
 		rfile.chargement();
-		System.out.println(enregistrements.get(5));
+		System.out.println(enregistrements.get(10000));
 	}
 	
 	//recuperer nombre d'enregistrements

@@ -8,6 +8,7 @@ import org.junit.Test;
 public class SimpleTest {
 
 	//DataManager myDataManager;
+	JeuMiTemps jm = new JeuMiTemps();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -19,7 +20,7 @@ public class SimpleTest {
 	@Test
 	public void loadTest() {
 		//Chargement du fichier 2013-11-03_tromso_stromsgodset_first.csv
-		//assertNotEquals(myDataManager, null);
+		assertNotEquals(jm, null);
 
 	}
 	
@@ -27,14 +28,19 @@ public class SimpleTest {
 	public void recordNumberTest() {		
 
 		//Vérifier que le nombre d'enregistrements est égal à 56661
-		//assertEquals(new Integer(56660), myDataManager.getRecorNumber());
+		//assertEquals(new Integer(56660), (Integer) jm.getnombreEnregistrement());
 	    
 	}
 	
 	@Test
 	public void playerPositionTest() {
 		//Récupérer l'enregistrement pour l'index 10000 et vérifier que la position en x du joueur avec l'id 5 est égale à 65.57721
-		
+	EnregistrementImage ei =	jm.getEnregistrement(10000);
+	System.out.println("ok"+ei);
+	float x = ei.getJoueur(5).getPosition().getX_pos();
+	System.out.println("x : "+x);
+
+		assertEquals(x,65.57721);
 	}	
 	
 	@Test
