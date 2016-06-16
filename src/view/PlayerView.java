@@ -9,5 +9,7 @@ public class PlayerView {
 	private Joueur joueur[]; 
 	private Spatial player[]; 
 	private Material mat; 
+	
+	
 
 }
